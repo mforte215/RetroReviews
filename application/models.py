@@ -8,6 +8,7 @@ class Article(models.Model):
     title_text = models.CharField(max_length=100, null=True)
     article_text = models.CharField(max_length=2000)
     pub_date = models.DateTimeField('date published')
+    header_image = models.ImageField(upload_to='images/', null=True)
 
     def __str__(self):
         return self.title_text
