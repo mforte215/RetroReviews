@@ -1,24 +1,36 @@
+{% extends 'application/base.html' %}
 {% load static %}
-<htmL>
-<head>
-   
-    <link rel="stylesheet" href="{% static 'application/css/bootstrap.min.css' %}" type="text/css" />
-    
-</head>
-<body>
+{% block content %}
 <div class="container">
-<div class="page-header">
-<h1>Latest Articles</h1>
+           
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8"><h1 class="header-title">Latest Articles and News <span class="glyphicon glyphicon-fire text-danger"></span></h1></div>
+    <div class="col-lg-2"></div>
+
 </div>
 {% if latest_article_list %}
-    <ul>
+    
     {% for article in latest_article_list %}
-        <li><a href="{% url 'articles:detail' article.id %}">{{ article.article_text }}</a></li>
+    <hr> 
+    <div class="card article-card">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8"><a href="{% url 'articles:detail' article.id %}"><img class="card-img-top article-image" src="{{ article.header_image.url }}" alt="Card image cap"></a>
+                <div class="card-body">
+                    <h3 class="card-title"><a href="{% url 'articles:detail' article.id %}">{{ article.title_text }} </a></h3>
+                    <p>{{ article.pub_date }}</p>
+                    <h4 class="card-text">{{ article.article_text }}</h4>
+                    <a href="{% url 'articles:detail' article.id %}" class="btn btn-primary btn-lg read-btn">Read More</a>
+                  </div>
+            </div>
+            <div class="col-md-2"></div>      
+        </div>
+      </div>
+        
     {% endfor %}
-    </ul>
 {% else %}
     <p>No articles are available.</p>
 {% endif %}
 </div>
-</body>
-</htmL>
+{% endblock %}
