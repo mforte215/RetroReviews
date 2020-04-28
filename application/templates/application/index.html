@@ -5,36 +5,48 @@
 <div class="top-story-cont">
 <div class="row">
     <div class="col-lg-3">
-        <div class="zoom">
             <a href="#">
+            <div class="top-story-single">
             <img class="top-article-image" src="{{ third_latest_top_article.header_image.url }}" alt="Card image cap">
+            <div class="overlay"></div>
+
             <div class="top-article-image-overlay"><h3>{{ third_latest_top_article.title_text }}</h3></div>
+            </div>
             </a>
-          </div>
+
     </div>
     <div class="col-lg-3">
         <div class="zoom">
             <a href="#">
+            <div class="top-story-single">
             <img class="top-article-image" src="{{ latest_top_article.header_image.url }}" alt="Card image cap">
+            <div class="overlay"></div>
             <div class="top-article-image-overlay"><h3>{{ latest_top_article.title_text }}</h3></div>
+            </div>
             </a>
           </div>
     </div>
-    
-    
+
+
     <div class="col-lg-3">
         <div class="zoom">
           <a href="#">
+            <div class="top-story-single">
           <img class="top-article-image" src="{{ second_latest_top_article.header_image.url }}" alt="Card image cap">
-          <div class="top-article-image-overlay"><h3>{{ second_latest_top_article.title_text }}</h3>{</div>
+          <div class="overlay"></div>
+          <div class="top-article-image-overlay"><h3>{{ second_latest_top_article.title_text }}</h3></div>
+        </div>
           </a>
         </div>
 </div>
 <div class="col-lg-3">
     <div class="zoom">
-        <a href="#"> 
+        <a href="#">
+        <div class="top-story-single">
         <img class="top-article-image" src="{{ fourth_latest_top_article.header_image.url }}" alt="Card image cap">
+        <div class="overlay"></div>
         <div class="top-article-image-overlay"><h3>{{ fourth_latest_top_article.title_text }}</h3></div>
+        </div>
         </a>
       </div>
 </div>
@@ -48,7 +60,7 @@
 </div>
 <div class="latest-news-container">
 {% if latest_article_list %}
-   
+
     {% for article in latest_article_list %}
     <div class="row equal">
         <div class="col-lg-3 side-panel"></div>
@@ -64,10 +76,10 @@
                     <a href="{% url 'articles:detail' article.id %}" class="btn btn-primary btn-lg read-btn">Read More</a>
                   </div>
             </div>
-            <div class="col-md-2"></div>      
+            <div class="col-md-2"></div>
         </div>
       </div>
-      <hr> 
+      <hr>
     </div>
     <div class="col-lg-3 side-panel"></div>
     </div>
