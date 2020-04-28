@@ -55,6 +55,7 @@ width: 100%;
 
     width: 100%;
     padding-top:15px;
+    border-radius: 25px;
 
 
 }
@@ -169,9 +170,6 @@ width: 100%;
 
   }
 
-  .side-panel {
-      background-color: blue;
-  }
 
   .equal {
     display: flex;
