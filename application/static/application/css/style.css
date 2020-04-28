@@ -20,7 +20,7 @@ width: 100%;
 .navbar-nav li {
 
     padding-top: 10px;
-    
+
 
 }
 
@@ -55,7 +55,7 @@ width: 100%;
 
     width: 100%;
     padding-top:15px;
-    
+
 
 }
 
@@ -66,17 +66,14 @@ width: 100%;
     max-height: 400px;
     display: block;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+    border-radius: 25px;
 
 }
 
-.top-article-image:hover{
+
+.top-article-image:hover {
     background: rgba(0,0,0,.5);
-
-}
-
-.zoom:hover {
-    transform: scale(1.2);
 }
 
 
@@ -89,8 +86,30 @@ width: 100%;
     height: 20%;
     color: white;
     text-align: center;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
 }
 
+
+.top-story-single:hover .overlay {
+    opacity: .5;
+  }
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15%;
+    right: 0;
+    height: 100%;
+    width: 70%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: black;
+    border-radius: 25px;
+
+  }
 
 
 .article-card {
@@ -119,7 +138,7 @@ width: 100%;
 
 
 
-  hr { 
+  hr {
     display: block;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
@@ -128,7 +147,7 @@ width: 100%;
     border-style: inset;
     border-width: 1px;
     color: 	#D3D3D3
-  } 
+  }
 
   .feed-container {
 
