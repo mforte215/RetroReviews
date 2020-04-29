@@ -34,3 +34,7 @@ def newIndexView(request):
 def newDetailView(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     return render(request, 'application/detail.html', {'article': article})
+
+def videoDetail(request, video_id):
+    videoLink = get_object_or_404(VideoLink, pk=video_id)
+    return render(request, 'application/video-detail.html', {'videoLink': videoLink})

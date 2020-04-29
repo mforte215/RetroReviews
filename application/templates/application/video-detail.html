@@ -1,0 +1,22 @@
+{% extends 'application/base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-cont">
+<div class="article-detail-cont">
+<div class="detail-title-cont">
+<h1 class="detail-title-cont">{{ videoLink.video_title }}</h1>
+</div>
+<p>{{ videoLink.pub_date }}</p>
+
+<div >
+  <div class="video-frame-cont">
+  <iframe src="{{ videoLink.video_url }}" allowfullscreen>
+  </iframe>
+  </div>
+</div>
+<div class="detail-body-text">
+
+</div>
+</div>
+</div>
+{% endblock %}
