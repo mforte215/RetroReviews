@@ -1,2 +1,21 @@
-<h1>{{ article.title_text }}</h1>
-<p>{{ article.article_text }}</p>
+{% extends 'application/base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-cont">
+<div class="article-detail-cont">
+<div class="detail-title-cont">
+<h1 class="detail-title-cont">{{ article.title_text }}</h1>
+</div>
+<p>{{ article.pub_date }}</p>
+<p>by {{ article.article_author }}
+
+<div class="detail-image-cont" >
+<img class="detail-image" src="{{ article.header_image.url }}" alt="Card image cap">
+<h3 class="detail-sub-text">{{ article.article_text }}</h3>
+</div>
+<div class="detail-body-text">
+{{ article.article_body_text | safe }}
+</div>
+</div>
+</div>
+{% endblock %}

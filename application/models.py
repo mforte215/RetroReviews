@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 import datetime
+from ckeditor.fields import RichTextField
 
 from taggit.managers import TaggableManager
 
@@ -11,6 +12,8 @@ class Article(models.Model):
     article_text = models.CharField(max_length=2000)
     pub_date = models.DateTimeField('date published')
     header_image = models.ImageField(upload_to='images/', null=True)
+    article_body_text = RichTextField()
+    article_author = models.CharField(max_length=100, null=True)
     tags = TaggableManager()
 
     def __str__(self):

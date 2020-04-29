@@ -19,9 +19,11 @@ from application import urls
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('articles/', include(urls)),
     path('admin/', admin.site.urls),
+
 ]
 
 if settings.DEBUG:
