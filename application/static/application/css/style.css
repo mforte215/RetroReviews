@@ -200,6 +200,7 @@ width: 100%;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    text-align: center;
    }
 .detail-title-cont {
   font-size: 200%;
@@ -209,6 +210,7 @@ width: 100%;
 
 .detail-image {
   border-radius: 20px;
+  width: 100%;
 }
 .detail-sub-text{
   padding-top: 5px;
@@ -222,4 +224,27 @@ width: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
+}
+
+/*VIDEO */
+
+
+.video-frame-cont {
+  overflow: hidden;
+  padding-top: 56.25%;
+  position: relative;
+
+}
+
+.video-frame-cont iframe {
+  border: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.iframe-container-4x3 {
+  padding-top: 75%;
 }

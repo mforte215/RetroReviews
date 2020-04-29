@@ -67,6 +67,7 @@
         <div class="video-box">
         <iframe width="420" height="345" src="{{ video.video_url }}">
         </iframe>
+        <a href="{% url 'articles:detailvideo' video.id %}" class="btn btn-danger btn-lg read-btn">Watch More</a>
         </div>
         <br>
         {% endfor %}
