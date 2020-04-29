@@ -26,3 +26,8 @@ class UpVotes(models.Model):
 
     def __str__(self):
         return self.vote_text
+
+class VideoLink(models.Model):
+    video_title = models.CharField(max_length=100, null=True)
+    video_url = models.CharField(max_length=100, null=True)
+    pub_date = models.DateTimeField('date published', null=True)
