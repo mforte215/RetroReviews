@@ -77,6 +77,12 @@ width: 100%;
     background: rgba(0,0,0,.5);
 }
 
+.video-box{
+
+  margins: 5px;
+
+}
+
 
 .top-article-image-overlay {
     background: rgba(255,0,0,.6);
