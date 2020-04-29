@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.views import generic
 from .models import Article, VideoLink
@@ -30,3 +30,7 @@ def newIndexView(request):
     latest_video_list = VideoLink.objects.order_by('-pub_date')[:5]
     return render(request, 'application/index.html', {'latest_article_list': latest_article_list, 'latest_top_article': latest_top_article, 'second_latest_top_article': second_latest_top_article, 'third_latest_top_article': third_latest_top_article, 'fourth_latest_top_article': fourth_latest_top_article, \
     'latest_video_list': latest_video_list })
+
+def newDetailView(request, article_id):
+    article = get_object_or_404(Article, pk=article_id)
+    return render(request, 'application/detail.html', {'article': article})

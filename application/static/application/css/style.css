@@ -181,3 +181,45 @@ width: 100%;
     display: flex;
     flex-wrap: wrap;
   }
+
+  /*##########
+  #DETAIL VIEWS
+################## */
+  .detail-cont {
+
+  }
+
+  .article-detail-cont {
+    width: 80%;
+    margin: auto;
+    margin-top:3%;
+  }
+
+  .detail-image-cont {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+   }
+.detail-title-cont {
+  font-size: 200%;
+  font-weight: bolder;
+  font-family: "Impact", Charcoal, sans-serif;
+}
+
+.detail-image {
+  border-radius: 20px;
+}
+.detail-sub-text{
+  padding-top: 5px;
+  width:95%;
+  margin:auto;
+}
+
+.detail-body-text {
+  font-size: 125%;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}

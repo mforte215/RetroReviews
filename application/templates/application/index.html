@@ -5,7 +5,7 @@
 <div class="top-story-cont">
 <div class="row">
     <div class="col-lg-3">
-            <a href="#">
+            <a href="{% url 'articles:detail' third_latest_top_article.id %}">
             <div class="top-story-single">
             <img class="top-article-image" src="{{ third_latest_top_article.header_image.url }}" alt="Card image cap">
             <div class="overlay"></div>
@@ -17,7 +17,7 @@
     </div>
     <div class="col-lg-3">
         <div class="zoom">
-            <a href="#">
+            <a href="{% url 'articles:detail' latest_top_article.id %}">
             <div class="top-story-single">
             <img class="top-article-image" src="{{ latest_top_article.header_image.url }}" alt="Card image cap">
             <div class="overlay"></div>
@@ -30,7 +30,7 @@
 
     <div class="col-lg-3">
         <div class="zoom">
-          <a href="#">
+          <a href="{% url 'articles:detail' second_latest_top_article.id %}">
             <div class="top-story-single">
           <img class="top-article-image" src="{{ second_latest_top_article.header_image.url }}" alt="Card image cap">
           <div class="overlay"></div>
@@ -41,7 +41,7 @@
 </div>
 <div class="col-lg-3">
     <div class="zoom">
-        <a href="#">
+        <a href="{% url 'articles:detail' fourth_latest_top_article.id %}">
         <div class="top-story-single">
         <img class="top-article-image" src="{{ fourth_latest_top_article.header_image.url }}" alt="Card image cap">
         <div class="overlay"></div>

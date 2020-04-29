@@ -1,0 +1,208 @@
+.header-image {
+
+width: 100%;
+
+}
+
+.navbar-header {
+
+    width:25%;
+
+}
+
+.navbar {
+
+    background: transparent;
+    padding-bottom: 6px;
+
+}
+
+.navbar-nav li {
+
+    padding-top: 10px;
+
+
+}
+
+.navbar-nav li a:hover {
+
+    color: #0026FF;
+
+}
+
+.navbar-nav li a:active {
+    color: #0026FF;
+  }
+
+.navbar-nav li a {
+
+    color: black;
+    font-size: x-large;
+    font-family: "Impact", Charcoal, sans-serif;
+
+}
+
+.header-title {
+
+    font-weight: bolder;
+    font-family: "Impact", Charcoal, sans-serif;
+    padding-top: 15px;
+    text-align: center;;
+
+}
+
+.article-image {
+
+    width: 100%;
+    padding-top:15px;
+    border-radius: 25px;
+
+
+}
+
+.top-article-image {
+
+    width: 75%;
+    min-height: 400px;
+    max-height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+
+}
+
+
+.top-article-image:hover {
+    background: rgba(0,0,0,.5);
+}
+
+.video-box{
+
+  margins: 5px;
+
+}
+
+
+.top-article-image-overlay {
+    background: rgba(255,0,0,.6);
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 20%;
+    color: white;
+    text-align: center;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+
+.top-story-single:hover .overlay {
+    opacity: .5;
+  }
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15%;
+    right: 0;
+    height: 100%;
+    width: 70%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: black;
+    border-radius: 25px;
+
+  }
+
+
+.article-card {
+
+    padding-top: 20px;
+    margin-bottom: 40px;
+
+}
+
+.read-btn {
+    margin-bottom: 20px;
+}
+
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #0026FF;
+    color: white;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top:10px;
+    font-family: "Impact", Charcoal, sans-serif;
+  }
+
+
+
+  hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+    color: 	#D3D3D3
+  }
+
+  .feed-container {
+
+    background-color: white;
+    width: 100%;
+
+  }
+
+  .top-story-cont {
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+  }
+
+  .latest-news-container {
+
+    margin: auto;
+
+  }
+
+
+  .equal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /*##########
+  #DETAIL VIEWS
+################## */
+  .detail-cont {
+    height: 100vh;
+  }
+
+  .article-detail-cont {
+    width: 80%;
+    margin: auto;
+    margin-top:3%;
+  }
+
+  .detail-image-cont {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+   }
+.detail-title-cont {
+  font-size: 250%;
+  font-weight: bolder;
+  font-family: "Impact", Charcoal, sans-serif;
+}
