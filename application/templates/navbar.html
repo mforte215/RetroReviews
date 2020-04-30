@@ -6,9 +6,10 @@
     </div>
     <ul class="nav navbar-nav">
       <li><a href="{% url 'articles:index' %}">Home</a></li>
-      <li><a href="#">Games</a></li>
+      <li><a href="{% url 'articles:gamefeed' %}">Games</a></li>
       <li><a href="{% url 'articles:moviefeed' %}">Movies</a></li>
-      <li><a href="#">Gadgets</a></li>
+      <li><a href="{% url 'articles:gadgetfeed' %}">Gadgets</a></li>
+      <li><a href="{% url 'articles:videofeed' %}">Videos</a></li>
     </ul>
   </div>
 </nav>

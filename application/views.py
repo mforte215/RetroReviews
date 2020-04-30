@@ -35,6 +35,14 @@ def movieFeed(request):
     latest_movie_list = Article.objects.filter(tags__name__in=["Movies"]).order_by('-pub_date')[:10]
     return render(request, 'application/movie-feed.html', {'latest_movie_list': latest_movie_list})
 
+def gameFeed(request):
+    latest_game_list = Article.objects.filter(tags__name__in=["Games"]).order_by('-pub_date')[:10]
+    return render(request, 'application/game-feed.html', {'latest_game_list': latest_game_list})
+
+def gadgetFeed(request):
+    latest_gadget_list = Article.objects.filter(tags__name__in=["Gadgets"]).order_by('-pub_date')[:10]
+    return render(request, 'application/gadget-feed.html', {'latest_gadget_list': latest_gadget_list})
+
 def newDetailView(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     return render(request, 'application/detail.html', {'article': article})
@@ -42,3 +50,7 @@ def newDetailView(request, article_id):
 def videoDetail(request, video_id):
     videoLink = get_object_or_404(VideoLink, pk=video_id)
     return render(request, 'application/video-detail.html', {'videoLink': videoLink})
+
+def videoFeed(request):
+    latest_video_list = VideoLink.objects.order_by('-pub_date')[:10]
+    return render(request, 'application/video-feed.html', {'latest_video_list': latest_video_list})
