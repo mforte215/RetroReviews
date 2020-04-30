@@ -1,0 +1,52 @@
+{% extends 'application/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container feed-container">
+<div class="top-story-cont">
+</div>
+<div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8"><h1 class="header-title">Latest Video News and Reviews <span class="glyphicon glyphicon-fire text-danger"></span></h1></div>
+    <div class="col-lg-2"></div>
+
+</div>
+<div class="latest-news-container">
+  <div class="row ">
+      <div class="col-lg-3">
+      </div>
+      <div class="col-lg-6">
+{% if latest_video_list %}
+
+    {% for videoLink in latest_video_list %}
+
+                  <div class="article-detail-cont">
+                  <div class="detail-title-cont">
+                  <h1 class="detail-title-cont">{{ videoLink.video_title }}</h1>
+                  </div>
+                  <p>{{ videoLink.pub_date }}</p>
+
+                  <div >
+                    <div class="video-frame-cont">
+                    <iframe src="{{ videoLink.video_url }}" allowfullscreen>
+                    </iframe>
+                    </div>
+                  </div>
+                  <div class="detail-body-text">
+
+                  </div>
+                  </div>
+
+
+      <hr>
+
+
+    {% endfor %}
+{% else %}
+    <p>No videos are available.</p>
+{% endif %}
+</div>
+<div class="col-lg-3"></div>
+</div>
+</div>
+</div>
+{% endblock %}
