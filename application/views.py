@@ -31,6 +31,10 @@ def newIndexView(request):
     return render(request, 'application/index.html', {'latest_article_list': latest_article_list, 'latest_top_article': latest_top_article, 'second_latest_top_article': second_latest_top_article, 'third_latest_top_article': third_latest_top_article, 'fourth_latest_top_article': fourth_latest_top_article, \
     'latest_video_list': latest_video_list })
 
+def movieFeed(request):
+    latest_movie_list = Article.objects.filter(tags__name__in=["Movies"]).order_by('-pub_date')[:10]
+    return render(request, 'application/movie-feed.html', {'latest_movie_list': latest_movie_list})
+
 def newDetailView(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     return render(request, 'application/detail.html', {'article': article})
