@@ -3,7 +3,16 @@ from django.http import Http404
 from django.views import generic
 from .models import Article, VideoLink
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy, reverse
+from django.views.generic.edit import CreateView
+from django.template import RequestContext
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout as django_logout
+from .forms import CustomUserCreationForm
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -54,3 +63,21 @@ def videoDetail(request, video_id):
 def videoFeed(request):
     latest_video_list = VideoLink.objects.order_by('-pub_date')[:10]
     return render(request, 'application/video-feed.html', {'latest_video_list': latest_video_list})
+
+def register(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('articles:index'), RequestContext(request))
+    registered = False
+    if request.method == 'POST':
+        user_form = CustomUserCreationForm(data=request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            registered = True
+            return render(request, 'registration/registration_complete.html')
+
+    else:
+        user_form = CustomUserCreationForm()
+    return render(request,'registration/register.html',
+                          {'form':user_form})
