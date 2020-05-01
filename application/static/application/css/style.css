@@ -17,6 +17,10 @@ width: 100%;
 
 }
 
+.topnav-right {
+  float: right;
+}
+
 .navbar-nav li {
 
     padding-top: 10px;
@@ -211,7 +215,7 @@ width: 100%;
 .detail-image {
   border-radius: 20px;
   width: 100%;
-  
+
 }
 .detail-sub-text{
   padding-top: 5px;
@@ -248,4 +252,98 @@ width: 100%;
 
 .iframe-container-4x3 {
   padding-top: 75%;
+}
+
+
+/* Login Form */
+.login-body {
+  width:100%;
+  height: 100vh;
+  background: url('../images/monopoly-game-board.jpg');
+  min-width:100%;
+  overflow: auto;
+}
+
+.login-body-2 {
+  width:100%;
+  background: url('../images/monopoly-game-board.jpg');
+  min-width:100%;
+  height: 100%;
+}
+
+.login-cont {
+  position: absolute;
+  width: 40%;
+  margin-left: 30%;
+  margin-right:auto;
+  background-color: white;
+  margin-top: 100px;
+  padding-bottom: 50px;
+  border-radius: 25px;
+  overflow: auto;
+
+
+
+}
+
+.login-box {
+  width: 35%;
+  margin-left: auto;
+  margin-right:auto;
+  background-color: white;
+  margin-top: 50px;
+  overflow: auto;
+
+
+}
+
+.login-input input {
+  padding: 0.2em;
+  box-sizing: border-box;
+  min-width: 0;
+
+}
+
+.login-btn {
+  width: 81%;
+  margin-bottom: 5px;
+}
+
+.login-box-2
+{
+  width: 35%;
+  margin-left: auto;
+  margin-right:auto;
+  background-color: white;
+
+}
+
+.login-cont-2 {
+  width: 40%;
+  margin-left: 30%;
+  margin-right:auto;
+  background-color: white;
+  padding-bottom: 50px;
+  border-radius: 25px;
+}
+
+.signup-top-container {
+  height: 100vh;
+    background: url('../images/monopoly-game-board.jpg');
+
+}
+
+.signup-second {
+  position: absolute;
+  background-color: white;
+  width: 30%;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 25px;
+  margin-top: 50px;
+  padding-top:10px;
+  padding-bottom: 10px;
+
 }

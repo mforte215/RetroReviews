@@ -1,0 +1,13 @@
+{% extends 'application/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="login-body">
+<div class="login-cont">
+  <div class="login-box">
+    <h2>Logged out!</h2>
+  <h4><a href="{% url 'login'%}">Click here to login again.</a></h4>
+  </div>
+</div>
+</div>
+{% endblock %}

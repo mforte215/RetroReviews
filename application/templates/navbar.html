@@ -11,5 +11,16 @@
       <li><a href="{% url 'articles:gadgetfeed' %}">Gadgets</a></li>
       <li><a href="{% url 'articles:videofeed' %}">Videos</a></li>
     </ul>
+    <div class="topnav-right">
+      <ul class="nav navbar-nav">
+        {% if user.is_authenticated %}
+        <li><a href="#">{{ user.username }}</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'articles:signup' %}">Sign Up</a></li>
+        {% endif %}
+        </ul>
+    </div>
   </div>
 </nav>

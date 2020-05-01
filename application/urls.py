@@ -1,6 +1,6 @@
-from django.urls import path
-
+from django.urls import path, include
 from . import views
+
 
 app_name = 'articles'
 urlpatterns = [
@@ -11,4 +11,6 @@ urlpatterns = [
     path('gadgets/', views.gadgetFeed, name='gadgetfeed'),
     path('videos/', views.videoFeed, name='videofeed'),
     path('video/<int:video_id>/', views.videoDetail, name='detailvideo'),
+    path('register/', views.register, name='signup'),
+
 ]

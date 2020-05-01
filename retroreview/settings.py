@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
+AUTH_USER_MODEL = 'application.CustomUser'
 
+LOGIN_REDIRECT_URL = '/retro'
+LOGOUT_REDIRECT_URL = '/retro/login'
 # Application definition
 
 INSTALLED_APPS = [
@@ -131,3 +134,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
