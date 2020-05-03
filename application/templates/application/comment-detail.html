@@ -1,0 +1,60 @@
+{% extends 'application/base.html' %}
+{% load static %}
+{% block content %}
+<div class="detail-cont">
+<div class="article-detail-cont">
+<div class="detail-title-cont">
+<h1 class="detail-title-cont">{{ article.title_text }}</h1>
+</div>
+<p>{{ comment.created_by }}</p>
+<p>by {{ comment.created_on }}
+<h3 class="detail-sub-text">{{ comment.text }}</h3>
+</div>
+
+<div id="commentBox" class="commentBox">
+<h2>{{ reply_list.count }} Replies</h2>
+<hr>
+{% if not user.is_authenticated %}
+<div>
+<a href="{% url 'login' %}">Login to comment</a>
+</div>
+{% endif %}
+  {% if reply_list %}
+  {% for reply in reply_list %}
+       <div class="comments" style="padding: 10px;">
+
+         <p class="font-weight-bold">
+           {{ reply.created_by }} <br>
+           <span class=" text-muted font-weight-normal">
+             {{ reply.created_on }}
+           </span>
+         </p>
+        <div class="comment_header">
+        {% if user.is_authenticated %}
+         {% if reply.created_by == user %}
+            <a href="#">Edit</a>
+         {% endif %}
+         {% endif %}
+        </div>
+         <div class="single_comment">
+         {{ reply.text | linebreaks }}
+         </div>
+       </div>
+       {% endfor %}
+  {% else %}
+      <p>No Replies Yet</p>
+  {% endif %}
+
+        {% if user.is_authenticated %}
+<div>
+        <form method="post" style="margin-top: 1.3em;">
+          {{ reply_form.as_p }}
+          {% csrf_token %}
+          <button type="submit" onclick="postComment()" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+      </div>
+        {% endif %}
+          </div>
+        </div>
+</div>
+{% endblock %}
