@@ -17,5 +17,74 @@
 {{ article.article_body_text | safe }}
 </div>
 </div>
+
+<div id="commentBox" class="commentBox">
+<h2>{{ comments.count }} Comments</h2>
+<hr>
+{% if not user.is_authenticated %}
+<div>
+<a href="{% url 'login' %}">Login to comment</a>
+</div>
+{% endif %}
+  {% if comments %}
+  {% for comment in comments %}
+       <div class="comments" style="padding: 10px;">
+
+         <p class="font-weight-bold">
+           {{ comment.created_by }} <br>
+           <span class=" text-muted font-weight-normal">
+             {{ comment.created_on }}
+           </span>
+         </p>
+        <div class="comment_header">
+        {% if user.is_authenticated%}
+
+            <a href="#">Reply</a>
+         {% if comment.created_by == user %}
+            <a href="#">Edit</a>
+         {% endif %}
+         {% endif %}
+        </div>
+         <div class="single_comment">
+         {{ comment.text | linebreaks }}
+         </div>
+       </div>
+       {% endfor %}
+       {% if comments.has_other_pages %}
+  <ul class="pagination">
+    {% if comments.has_previous %}
+      <li><a href="?page={{ comments.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in comments.paginator.page_range %}
+      {% if comments.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if comments.has_next %}
+      <li><a href="?page={{ comments.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+  {% else %}
+      <p>No Comments Yet</p>
+  {% endif %}
+
+        {% if user.is_authenticated %}
+<div>
+        <form method="post" style="margin-top: 1.3em;">
+          {{ comment_form.as_p }}
+          {% csrf_token %}
+          <button type="submit" onclick="postComment()" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+      </div>
+        {% endif %}
+          </div>
+        </div>
 </div>
 {% endblock %}

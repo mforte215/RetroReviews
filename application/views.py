@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from django.views import generic
-from .models import Article, VideoLink
+from .models import Article, VideoLink, Comment
 from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
@@ -10,9 +10,9 @@ from django.views.generic.edit import CreateView
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout as django_logout
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CommentForm
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
@@ -28,6 +28,8 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Article
     template_name = 'application/detail.html'
+
+
 
 
 def newIndexView(request):
@@ -54,7 +56,30 @@ def gadgetFeed(request):
 
 def newDetailView(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
-    return render(request, 'application/detail.html', {'article': article})
+    page = request.GET.get('page', 1)
+    comment_list = article.comments.filter(active=True).order_by('-created_on')
+    paginator = Paginator(comment_list, 10)
+    try:
+        comments = paginator.page(page)
+    except PageNotAnInteger:
+        comments = paginator.page(1)
+    except EmptyPage:
+        comments     = paginator.page(paginator.num_pages)
+    comment = None
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.username;
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.article = article
+            comment.created_by = request.user
+            comment.save()
+            return redirect('articles:detail', article_id=article.id)
+    else:
+        comment_form = CommentForm()
+    return render(request, 'application/detail.html', {'article': article, 'comments': comments, 'comment': comment, 'comment_form': comment_form, 'username': username})
 
 def videoDetail(request, video_id):
     videoLink = get_object_or_404(VideoLink, pk=video_id)
