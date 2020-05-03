@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Comment
+from .models import CustomUser, Comment, Reply
 
 class CustomUserCreationForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
@@ -18,3 +18,8 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields= ('text',)
+
+class ReplyForm(forms.ModelForm):
+    class Meta:
+        model = Reply
+        fields =('text',)

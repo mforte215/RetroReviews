@@ -51,6 +51,23 @@ class Comment(models.Model):
             obj.created_by = request.user
         super().save_model(request, obj, form, change)
 
+class Reply(models.Model):
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
+    created_on = models.DateTimeField(auto_now_add=True)
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="replies", null=True)
+    text = models.TextField(max_length=1000)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return 'Reply {} by {}'.format(self.id, self.created_by)
+
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
+
+
 class UpVotes(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
     vote_text = models.CharField(max_length=200)

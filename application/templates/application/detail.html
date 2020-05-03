@@ -34,7 +34,8 @@
            {{ comment.created_by }} <br>
            <span class=" text-muted font-weight-normal">
              {{ comment.created_on }}
-           </span>
+           </span> <br>
+          <a href="{% url 'articles:commentdetail' comment.id  %}">View All Replies ({{ comment.reply.all.count }} Replies)</a>
          </p>
         <div class="comment_header">
         {% if user.is_authenticated%}
