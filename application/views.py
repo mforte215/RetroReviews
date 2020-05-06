@@ -10,7 +10,7 @@ from django.views.generic.edit import CreateView
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout as django_logout
-from .forms import CustomUserCreationForm, CommentForm, ReplyForm
+from .forms import CustomUserCreationForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -57,14 +57,7 @@ def gadgetFeed(request):
 def newDetailView(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     page = request.GET.get('page', 1)
-    comment_list = article.comments.filter(active=True).order_by('-created_on')
-    paginator = Paginator(comment_list, 10)
-    try:
-        comments = paginator.page(page)
-    except PageNotAnInteger:
-        comments = paginator.page(1)
-    except EmptyPage:
-        comments     = paginator.page(paginator.num_pages)
+    comments = article.comments.filter(active=True)
     comment = None
     username = None
     if request.user.is_authenticated:
@@ -81,22 +74,6 @@ def newDetailView(request, article_id):
         comment_form = CommentForm()
     return render(request, 'application/detail.html', {'article': article, 'comments': comments, 'comment': comment, 'comment_form': comment_form, 'username': username})
 
-def commentDetailView(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    reply_list = comment.replies.filter(active=True).order_by('-created_on')
-    reply = None
-
-    if request.method == 'POST':
-        reply_form = ReplyForm(data=request.POST)
-        if reply_form.is_valid():
-            reply = reply_form.save(commit=False)
-            reply.comment = comment
-            reply.created_by = request.user
-            reply.save()
-            return redirect('articles:commentdetail', comment_id=comment.id)
-    else:
-        reply_form = ReplyForm()
-    return render(request, 'application/comment-detail.html', {'comment': comment, 'reply_list': reply_list, 'reply': reply, 'reply_form': reply_form})
 
 
 

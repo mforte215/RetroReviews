@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser, Comment, Reply
+from .models import CustomUser, Comment
+from django.forms import ModelForm, Textarea
 
-class CustomUserCreationForm(forms.ModelForm):
+class CustomUserCreationForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = CustomUser
@@ -14,12 +15,10 @@ class CustomUserChangeForm(UserChangeForm):
         model = CustomUser
         fields = ('username', 'first_name', 'last_name', 'email', 'mobile_number' )
 
-class CommentForm(forms.ModelForm):
+class CommentForm(ModelForm):
+    text = forms.CharField(label='', widget=forms.Textarea(attrs={'rows':3, 'cols':115, 'style':'resize:none;'}))
+
     class Meta:
         model = Comment
         fields= ('text',)
 
-class ReplyForm(forms.ModelForm):
-    class Meta:
-        model = Reply
-        fields =('text',)

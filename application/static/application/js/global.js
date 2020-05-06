@@ -1,3 +1,4 @@
-function postComment() {
-    document.getElementById("commentBox").focus();
-}
+$(".replyclicker").click(function(){
+        alert("Yeah!");
+
+        });
