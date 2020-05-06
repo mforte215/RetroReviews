@@ -26,11 +26,11 @@
 <div>
 <a href="{% url 'login' %}">Login to comment</a>
 {% else %}
-<div>
-        <form method="post" style="margin-top: 1.3em;">
+  <div>
+        <form id="commentform" method="post" style="margin-top: 1.3em; margin-left: 55px; margin-bottom: 20px;">
           {{ comment_form.as_p }}
           {% csrf_token %}
-          <button type="submit" onclick="postComment()" class="btn btn-primary  btn-lg">Submit</button>
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
         </form>
       </div>
 
@@ -39,42 +39,36 @@
   <div class="comments" style="padding: 10px;">
     {% recursetree comments %}
         <div class="comment-container">
-
+          <p id="hiddenIDField{{ node.id }}" style="display: none;">{{ node.id  }}</p>
          <p class="font-weight-bold">
            {{ node.created_by }}
            <span class=" text-muted font-weight-normal">
              {{ node.created_on }}
            </span>
-           <span style="float:right;">    
-            <a href="#">View All Replies({{ node.get_descendant_count }})</a>      
-            {% if user.is_authenticated%}   
-                <button class="replyclicker">Reply</button>
-             {% if node.created_by == user %}
-                <a href="#">Edit</a>
-             {% endif %}
-             {% endif %}</span>
+         
          </p>
         
          <div class="single_comment">
          {{ node.text | linebreaks }}
          </div>
-         <div class="wrapperreply">
-         <div class="reply-comment">
-         {{ comment_form.as_p }}
-        </div>
-        <div class="reply-button">
-         {% csrf_token %}
-          <button type="submit" onclick="postComment()" class="btn btn-primary  btn-lg">Submit</button>
-        </div>
-      </div>
-         {% if not node.is_leaf_node %}
+         <span style="float:right;">    
+          <a href="#">View All Replies({{ node.get_descendant_count }})</a>      
+          {% if user.is_authenticated and node.created_by != user %}   
+              <button class="replyclicker">Reply</button>
+              {% endif %}
+           {% if node.created_by == user %}
+              <a href="#">Edit</a>
+          
+           {% endif %}</span>
+       {% if not node.is_leaf_node %}
          {% if node.level < 2 %}
          <div class="reply-comment">
          {{ children }}
         </div>
           {% endif %}
           {% endif %}
-        </div>
+         
+        </div> 
         {% endrecursetree %}
        </div>
 

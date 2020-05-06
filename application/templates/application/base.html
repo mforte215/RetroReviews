@@ -9,6 +9,40 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="{% static 'application/js/global.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'application/css/style.css' %}">
+  <script>
+
+  $(document).ready(function(){
+
+      $(".replyclicker").click(function(){
+        var form = $("#commentform").clone(true);
+        var that = $(this).parent().parent().children()[0];
+        console.log(that);
+        var otherId = that.innerHTML;
+        console.log(otherId)
+        var parentId = parseInt(otherId);
+        console.log(parentId)
+        form.find('#id_parent_id').val(parentId);
+        var cancelbtn=$('<input/>').attr({
+        type: "button",
+        id: "field",
+        value: 'cancel',
+        class: "btn btn-danger btn-lg",
+        onclick: "destroyform()"
+    });
+      form.append(cancelbtn)
+        $(this).parent().append(form);
+
+        $(this).hide();     
+            });
+          });
+
+  function destroyform() {
+    console.log("Calling Destroy Form");
+    var thiselement = $(this).parent().parent();
+    console.log(thiselement);
+  }
+  </script>
+
 </head>
 <body>
 
