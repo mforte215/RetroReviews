@@ -13,9 +13,10 @@ from django.contrib.auth import logout as django_logout
 from .forms import CustomUserCreationForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import logging
 
 
-
+logger = logging.getLogger("mylogger")
 
 class IndexView(generic.ListView):
     template_name = 'application/index.html'
@@ -60,16 +61,31 @@ def newDetailView(request, article_id):
     comments = article.comments.filter(active=True)
     comment = None
     username = None
+    parent_id = None
     if request.user.is_authenticated:
         username = request.user.username;
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.article = article
-            comment.created_by = request.user
-            comment.save()
-            return redirect('articles:detail', article_id=article.id)
+            parent_id = comment_form['parent_id'].value()
+            logger.info("-------------------------------")
+            logger.info("Logging parent id:")
+            logger.info(parent_id)
+            logger.info("-------------------------------")
+            if parent_id is not None and parent_id != '':
+                parent = Comment.objects.get(pk=parent_id)
+                comment = comment_form.save(commit=False)
+                comment.parent = parent;
+                comment.article = article
+                comment.created_by = request.user
+                comment.save()
+                return redirect('articles:detail', article_id=article.id)
+            else:
+                comment = comment_form.save(commit=False)
+                comment.article = article
+                comment.created_by = request.user
+                comment.save()
+                return redirect('articles:detail', article_id=article.id)
     else:
         comment_form = CommentForm()
     return render(request, 'application/detail.html', {'article': article, 'comments': comments, 'comment': comment, 'comment_form': comment_form, 'username': username})
