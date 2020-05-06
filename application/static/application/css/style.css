@@ -359,15 +359,35 @@ width: 100%;
 
 .single_comment {
 
-  border: lightgrey;
-  border-width: thin;
-  border-style: solid;
+  border-bottom: solid;
+  border-color: darkred;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 10px;
+  padding-left: 20px;
 
 }
 
 .comment_header {
   text-align: right;
+}
+
+.comment-container {
+  margin-bottom: 40px;
+  padding-left: 10px;
+}
+
+.reply-comment {
+  width: 95%;
+  margin-left: 5%;
+  margin-top: 4%;
+  border-left: solid;
+  border-spacing: 35px;
+  border-color: grey;
+}
+
+
+
+.replybutton {
+  margin-left: 5%;
+
 }

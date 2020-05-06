@@ -12,6 +12,5 @@ urlpatterns = [
     path('videos/', views.videoFeed, name='videofeed'),
     path('video/<int:video_id>/', views.videoDetail, name='detailvideo'),
     path('register/', views.register, name='signup'),
-    path('comment/<int:comment_id>/', views.commentDetailView, name='commentdetail' )
 
 ]

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'taggit',
     'ckeditor',
+    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -83,10 +84,12 @@ WSGI_APPLICATION = 'retroreview.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': '/etc/mysql/my.cnf',
-        },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'retro_data',
+        'USER': 'postgres',
+        'PASSWORD': 'Winkel1991',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
