@@ -27,7 +27,7 @@
         id: "field",
         value: 'cancel',
         class: "btn btn-danger btn-lg",
-        onclick: "destroyform()"
+        onclick: "destroyform(this)"
     });
       form.append(cancelbtn)
         $(this).parent().append(form);
@@ -36,10 +36,14 @@
             });
           });
 
-  function destroyform() {
+  function destroyform(element) {
     console.log("Calling Destroy Form");
-    var thiselement = $(this).parent().parent();
+    var thiselement = $(element).parent();
     console.log(thiselement);
+    var nextelement = $(element).parent().parent().children()[1];
+    console.log(nextelement);
+    thiselement.remove();
+    $(nextelement).show();
   }
   </script>
 
